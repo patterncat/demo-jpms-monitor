@@ -3,7 +3,7 @@ package monitor;
 import monitor.observer.DiagnosticDataPoint;
 import monitor.observer.ServiceObserver;
 import monitor.observer.alpha.AlphaServiceObserver;
-import monitor.observer.beta.BetaServiceObserver;
+//import monitor.observer.beta.BetaServiceObserver;
 import monitor.persistence.StatisticsRepository;
 import monitor.statistics.Statistician;
 import monitor.statistics.Statistics;
@@ -60,7 +60,7 @@ public class Monitor {
 
 	public static void main(String[] args) {
 		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-		List<ServiceObserver> observers = Stream.of("alpha-1", "alpha-2", "alpha-3", "beta-1")
+		List<ServiceObserver> observers = Stream.of("alpha-1", "alpha-2", "alpha-3"/*, "beta-1" */)
 				.map(Monitor::createObserver)
 				.collect(toList());
 		Statistician statistician = new Statistician();
@@ -75,7 +75,7 @@ public class Monitor {
 
 	private static ServiceObserver createObserver(String serviceName) {
 		return AlphaServiceObserver.createIfAlphaService(serviceName)
-				.or(() -> BetaServiceObserver.createIfBetaService(serviceName))
+//				.or(() -> BetaServiceObserver.createIfBetaService(serviceName))
 				.orElseThrow(IllegalArgumentException::new);
 	}
 
