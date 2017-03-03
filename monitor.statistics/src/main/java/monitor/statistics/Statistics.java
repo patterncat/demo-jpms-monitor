@@ -21,8 +21,12 @@ public class Statistics {
 		this.livenessQuotaByService = requireNonNull(livenessQuotaByService);
 	}
 
-	static Statistics create() {
+	public static Statistics empty() {
 		return new Statistics(LivenessQuota.zero(), new HashMap<>());
+	}
+
+	public static Statistics with(LivenessQuota totalLivenessQuota) {
+		return new Statistics(totalLivenessQuota, new HashMap<>());
 	}
 
 	Statistics merge(DiagnosticDataPoint dataPoint) {
@@ -53,8 +57,12 @@ public class Statistics {
 			this.aliveCount = aliveCount;
 		}
 
-		static LivenessQuota zero() {
+		public static LivenessQuota zero() {
 			return new LivenessQuota(0,0);
+		}
+
+		public static LivenessQuota with(long dataPointCount, long aliveCount) {
+			return new LivenessQuota(dataPointCount, aliveCount);
 		}
 
 		private static long aliveAsLong(DiagnosticDataPoint dataPoint) {
@@ -69,6 +77,10 @@ public class Statistics {
 
 		public long dataPointCount() {
 			return dataPointCount;
+		}
+
+		public long aliveCount() {
+			return aliveCount;
 		}
 
 		public double livenessQuota() {
