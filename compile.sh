@@ -46,10 +46,14 @@ jar9 --create \
 	-C classes/monitor.statistics .
 
 echo " > creating monitor.persistence"
+# hibernate-core is required as an automatic module, so copy it to mods
+cp libs/hibernate-jpa-* mods/hibernate.jpa.jar
 javac9 \
 	--module-path mods \
 	-d classes/monitor.persistence \
 	$(find monitor.persistence -name '*.java')
+# copy META-INF so it can be included in JAR
+cp -r monitor.persistence/src/main/resources/META-INF/ classes/monitor.persistence
 jar9 --create \
 	--file mods/monitor.persistence.jar \
 	-C classes/monitor.persistence .

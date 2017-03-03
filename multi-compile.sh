@@ -8,9 +8,12 @@ mkdir classes
 rm -rf mods
 mkdir mods
 
-echo " > multi-compiling modules"
+# spark is required as an automatic module, so copy it to mods
+cp libs/hibernate-jpa-* mods/hibernate.jpa.jar
 # spark is required as an automatic module, so copy it to mods
 cp libs/spark-core-* mods/spark.core.jar
+
+echo " > multi-compiling modules"
 javac9 \
 	--module-path mods \
 	--module-source-path "./*/src/main/java" \
@@ -30,6 +33,8 @@ jar9 --create \
 jar9 --create \
 	--file mods/monitor.statistics.jar \
 	-C classes/monitor.statistics .
+# copy META-INF so it can be included in JAR
+cp -r monitor.persistence/src/main/resources/META-INF/ classes/monitor.persistence
 jar9 --create \
 	--file mods/monitor.persistence.jar \
 	-C classes/monitor.persistence .

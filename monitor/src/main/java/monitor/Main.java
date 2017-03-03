@@ -40,7 +40,7 @@ public class Main {
 				.map(Main::createObserver)
 				.collect(toList());
 		Statistician statistician = new Statistician();
-		StatisticsRepository repository = new StatisticsRepository();
+		StatisticsRepository repository = StatisticsRepository.initialize();
 		Statistics initialStatistics = repository.load().orElseGet(statistician::emptyStatistics);
 
 		return new Monitor(observers, statistician, repository, initialStatistics);
