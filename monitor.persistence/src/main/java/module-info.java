@@ -3,4 +3,5 @@ module monitor.persistence {
 	requires monitor.statistics;
 
 	exports monitor.persistence;
+	exports monitor.persistence.dtos;
 }
