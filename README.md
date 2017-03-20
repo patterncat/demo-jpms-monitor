@@ -1,43 +1,38 @@
-# ServiceMonitor
+# Optional Dependencies
 
-An example application for my book [_The Java 9 Module System_](https://www.manning.com/books/the-java-9-module-system?a_aid=nipa&a_bid=869915cb).
-The _Service Monitor_ is an application that observes a hypothetical network of microservices by
+The module _monitor.stats_ has an optional dependency on _stats.fancy_.
+It's module descriptor uses `requires static` for that:
 
-* contacting individual services
-* collecting and aggregating diagnostic data into statistics
-* persisting statistics
-* making statistics available via REST
+```java
+module monitor.statistics {
+	requires monitor.observer;
+	requires static stats.fancy;
+	exports monitor.statistics;
+}
+```
 
-It is split into a number of modules that focus on specific concerns.
-Each module has its own directory that contains the known folder structure, e.g. `src/main/java`.
+To check whether the module is present, it uses the reflection API (see `Statistician`):
 
+```java
+boolean isFancyAvailable = Layer.boot()
+		.configuration()
+		.findModule("stats.fancy")
+		.isPresent();
+```
 
-## Branches
+Even though the module is on the module path, it is not resolved and thus not part of the module graphs unless:
 
-The master branch uses basic features, except where it has to use automatic and unnamed modules for the non-modularized dependencies (Spark, Hibernate).
-Other branches explore individual features of the module system:
+* it is required (non-optionally) by some other module
+* it is explicitly addedd to the graph during resolution
 
-* [implied readability](tree/feature-implied-readability) aka `requires transitive`
-* [optional dependencies](tree/feature-optional-dependencies) aka `requires static`
-* [qualified exports](tree/feature-qualified-exports) aka `exports to`
+The first is not the case here.
+The second can be achieved by launching the app with `--add-modules`:
 
-Then there are some branches that explore how things can break:
-
-* [duplicate modules](tree/break-duplicate-modules-even-if-unrequired) (not properly documented)
-* split package, on [compilation](tree/break-split-package-compilation) and [launch](tree/break-split-package-launch) (not properly documented)
-
-
-## Setup
-
-This demo was developed against build 158 of the [Jigsaw early access prototype](https://jdk9.java.net/jigsaw/).
-For it to work the Java 9 variants of `javac`, `jar`, and `java` must be available on the command line via `javac9`, `jar9`, and `java9`, e.g. by symlinking them.
-
-The root directory contains a number of shell scripts:
-
-* `compile.sh`: compiles the modules one by one
-* `multi-compile.sh`: compiles all modules at once
-* `dry-run`: launches the application with `--dry-run`, which aborts before calling the main method
-* `run`: launches the application
-
-To reduce setup efforts for IntelliJ users, I decided to leave my `.idea` folder in here.
-Let's see whether it helps...
+```bash
+# add the optional dependency stats.fancy
+java9 \
+	--module-path mods \
+	--class-path "libs/*" \
+	--add-modules stats.fancy \
+	--module monitor
+```
