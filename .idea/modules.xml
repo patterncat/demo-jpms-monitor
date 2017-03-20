@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/monitor.persistence.iml" filepath="$PROJECT_DIR$/.idea/monitor.persistence.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/monitor.rest.iml" filepath="$PROJECT_DIR$/.idea/monitor.rest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/monitor.statistics.iml" filepath="$PROJECT_DIR$/.idea/monitor.statistics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stats.fancy/stats.fancy.iml" filepath="$PROJECT_DIR$/stats.fancy/stats.fancy.iml" />
     </modules>
   </component>
 </project>
