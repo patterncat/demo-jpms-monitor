@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="monitor.observer" />
+    <orderEntry type="module" module-name="stats.fancy" />
   </component>
 </module>
