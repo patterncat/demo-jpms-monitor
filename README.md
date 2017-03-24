@@ -14,10 +14,13 @@ module monitor.statistics {
 To check whether the module is present, it uses the reflection API (see `Statistician`):
 
 ```java
-boolean isFancyAvailable = Layer.boot()
-		.configuration()
-		.findModule("stats.fancy")
-		.isPresent();
+private boolean isModulePresent(String moduleName) {
+	return this.getClass()
+			.getModule()
+			.getLayer()
+			.findModule(moduleName)
+			.isPresent();
+}
 ```
 
 Even though the module is on the module path, it is not resolved and thus not part of the module graphs unless:

@@ -3,28 +3,29 @@ package monitor.statistics;
 import monitor.observer.DiagnosticDataPoint;
 import stats.fancy.FancyStats;
 
-import java.lang.reflect.Layer;
-import java.util.stream.Stream;
-
 public class Statistician {
 
 	private final boolean isFancyAvailable;
 
 	public Statistician() {
 		isFancyAvailable = checkFancyStats();
-		System.out.println(FancyStats.copyrightNotice());
 	}
 
 	private boolean checkFancyStats() {
-		boolean isFancyAvailable = Layer.boot()
-				.configuration()
-				.findModule("stats.fancy")
-				.isPresent();
+		boolean isFancyAvailable = isModulePresent("stats.fancy");
 		String message = "Module 'stats.fancy' is"
 				+ (isFancyAvailable ? " " : " not ")
 				+ "available.";
 		System.out.println(message);
 		return isFancyAvailable;
+	}
+
+	private boolean isModulePresent(String moduleName) {
+		return this.getClass()
+				.getModule()
+				.getLayer()
+				.findModule(moduleName)
+				.isPresent();
 	}
 
 	public Statistics emptyStatistics() {
