@@ -12,6 +12,7 @@ public class Statistician {
 
 	public Statistician() {
 		isFancyAvailable = checkFancyStats();
+		System.out.println(FancyStats.copyrightNotice());
 	}
 
 	private boolean checkFancyStats() {
@@ -33,7 +34,7 @@ public class Statistician {
 	public Statistics compute(Statistics currentStats, Iterable<DiagnosticDataPoint> dataPoints) {
 		if (isFancyAvailable) {
 			// here, fancystats could actually be used
-			System.out.println(FancyStats.COPYRIGHT);
+			System.out.println(FancyStats.copyrightNotice());
 			return emptyStatistics();
 		} else {
 			Statistics finalStats = currentStats;
