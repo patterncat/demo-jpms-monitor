@@ -1,3 +1,6 @@
+> :arrow_upper_right: This README only covers one section of the demo.
+> The [master branch](../../tree/master) contains more information.
+
 # Optional Dependencies
 
 The module _monitor.stats_ has an optional dependency on _stats.fancy_.
