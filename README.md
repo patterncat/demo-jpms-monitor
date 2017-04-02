@@ -1,9 +1,6 @@
-# Monitor
+> :arrow_upper_right: This README only covers one section of the demo.
+> The [master branch](../../tree/master) contains more information.
 
-An example application for [_Java Module System in Action_](https://git.manning.com/agileauthor/parlog).
-The Monitor is an application that observes a hypothetical network of microservices by
+## Duplicate Modules - Launch Time
 
-* contacting individual services
-* collecting and aggregating diagnostic data into statistics
-* persisting statistics
-* making statistics available via REST
+ :construction: Documentation Under Construction! :construction:
