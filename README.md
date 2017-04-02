@@ -1,3 +1,6 @@
+> :arrow_upper_right: This README only covers one section of the demo.
+> The [master branch](../../tree/master) contains more information.
+
 # Qualified Exports
 
 The observer modules share common utilities, which can be found in [_monitor.observer_/`ObserverUtil`](monitor.observer/src/main/java/monitor/observer/utils/ObserverUtil.java)
