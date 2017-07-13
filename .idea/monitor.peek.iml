@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/monitor.peek">
+      <sourceFolder url="file://$MODULE_DIR$/monitor.peek/src/main/java" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="monitor.observer.alpha" />
+    <orderEntry type="module" module-name="monitor.persistence" />
+    <orderEntry type="module" module-name="monitor.observer" />
+    <orderEntry type="module" module-name="monitor.statistics" />
+  </component>
+</module>
